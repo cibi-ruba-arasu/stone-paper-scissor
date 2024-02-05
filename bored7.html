@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<Style>
+    .btn{
+        font-size: 70px;
+        margin-left: 60px;
+        background-color: blue;
+        color: white;
+        border-style: none;
+
+    }
+    .btn:hover{
+        background-color: white;
+        color: blue;
+        transition: 500ms;
+        cursor: pointer;
+    }
+    .btn:active{
+        border-style: solid;
+    }
+</Style>
+<body>
+    <button class="btn" onclick="a=1;imp(a)">Stone</button >
+    <button class="btn" onclick="a=2;imp(a)">Paper</button>
+    <button class="btn" onclick="a=3;imp(a)">Scissor</button>
+    <button class="btn" onclick="alert('SCORE HAS BEEN RESET');localStorage.setItem('ps',JSON.stringify(0));
+    localStorage.setItem('cs',JSON.stringify(0));">Reset Score</button>
+</body>
+<script>
+    let ps=0;
+    let cs=0;
+    function imp(a){
+        ps=JSON.parse(localStorage.getItem('ps'));
+        cs=JSON.parse(localStorage.getItem('cs'));
+        let cc=Math.random();
+        if(a==1)
+        {
+            if(cc>0 && cc<0.3)
+            {
+                alert('you chose stone, bot chose stone YOU TIED... your score is '+ps+' botscore is '+cs);
+            }else if(cc>=0.3 && cc<0.6){
+                cs=cs+1;
+                alert('you chose stone, bot chose paper YOU LOST... your score is '+ps+' botscore is '+cs);
+            }else{
+                ps=ps+1;
+                alert('you chose stone, bot chose scissor YOU WON... your score is '+ps+' botscore is '+cs);
+            }
+        }else if(a==2)
+        {
+            if(cc>0 && cc<0.3)
+            {
+                ps=ps+1;
+                alert('you chose paper, bot chose stone YOU WIN... your score is '+ps+' botscore is '+cs);
+            }else if(cc>=0.3 && cc<0.6){
+                alert('you chose paper, bot chose paper YOU TIE... your score is '+ps+' botscore is '+cs);
+            }else{
+                cs=cs+1;
+                alert('you chose paper, bot chose scissor YOU LOST... your score is '+ps+' botscore is '+cs);
+            }
+        }else if(a==3)
+        {
+            if(cc>0 && cc<0.3)
+            {
+                cs=cs+1;
+                alert('you chose scissor, bot chose stone YOU LOST... your score is '+ps+' botscore is '+cs);
+            }else if(cc>=0.3 && cc<0.6){
+                ps=ps+1;
+                alert('you chose scissor, bot chose paper YOU WIN... your score is '+ps+' botscore is '+cs);
+            }else{
+                alert('you chose scissor, bot chose scissor YOU TIED... your score is '+ps+' botscore is '+cs);
+            }
+        }
+        localStorage.setItem('ps',JSON.stringify(ps));
+        localStorage.setItem('cs',JSON.stringify(cs));
+    }
+</script>
